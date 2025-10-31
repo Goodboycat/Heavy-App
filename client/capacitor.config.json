@@ -1,0 +1,8 @@
+{
+  "appId": "com.goodboycat.heavyapp",
+  "appName": "Heavy App",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}

@@ -14,12 +14,15 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'  # Changed from 18 to 20
+        node-version: '20'
         cache: 'npm'
         cache-dependency-path: client/package-lock.json
         
     - name: Install client dependencies
       run: cd client && npm ci
+      
+    - name: Install test coverage dependencies
+      run: cd client && npm install --save-dev @vitest/coverage-v8
       
     - name: Build client
       run: cd client && npm run build
@@ -33,10 +36,21 @@ jobs:
     - name: Install Capacitor
       run: cd client && npm install @capacitor/cli @capacitor/core @capacitor/android
       
-    - name: Build Android APK
+    - name: Configure Capacitor and Build Android
       run: |
         cd client
-        npx cap init "Heavy App" "com.goodboycat.heavyapp" --web-dir dist
+        # Remove any existing config files
+        rm -f capacitor.config.*
+        # Create JSON config
+        echo '{
+          "appId": "com.goodboycat.heavyapp",
+          "appName": "Heavy App",
+          "webDir": "dist",
+          "server": {
+            "androidScheme": "https"
+          }
+        }' > capacitor.config.json
+        # Add Android platform
         npx cap add android
         npx cap sync
         cd android

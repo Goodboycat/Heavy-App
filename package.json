@@ -1,28 +1,19 @@
 {
   "name": "haevy-app",
   "version": "1.0.0",
-  "description": "A senior-level full-stack application",
-  "type": "module",
   "scripts": {
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm run dev",
+    "test": "node run-tests.js",
+    "test:server": "cd server && npm test",
+    "test:client": "cd client && npm test",
     "build": "concurrently \"npm run build:server\" \"npm run build:client\"",
     "build:server": "cd server && npm run build",
     "build:client": "cd client && npm run build",
-    "start": "cd server && npm start",
-    "test": "concurrently \"npm run test:server\" \"npm run test:client\"",
-    "test:server": "cd server && npm test",
-    "test:client": "cd client && npm test",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "typecheck": "concurrently \"npm run typecheck:server\" \"npm run typecheck:client\""
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install --legacy-peer-deps"
   },
   "devDependencies": {
-    "concurrently": "^8.2.0",
-    "eslint": "^8.45.0",
-    "typescript": "^5.1.6"
-  },
-  "engines": {
-    "node": ">=18.0.0"
+    "concurrently": "^7.0.0"
   }
 }

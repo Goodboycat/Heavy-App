@@ -1,40 +1,17 @@
 {
-  "name": "haevy-server",
-  "type": "module",
+  "name": "server",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "nodemon --exec node --loader ts-node/esm src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "test": "NODE_ENV=test jest",
-    "test:watch": "NODE_ENV=test jest --watch",
-    "typecheck": "tsc --noEmit"
+    "dev": "node src/index.js",
+    "test": "vitest run",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:seed": "node prisma/seed.js"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "helmet": "^7.0.0",
-    "compression": "^1.7.4",
-    "rate-limiter-flexible": "^4.0.1",
-    "redis": "^4.6.7",
-    "pg": "^8.11.3",
-    "prisma": "^5.2.0",
-    "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^9.0.2",
-    "zod": "^3.22.2",
-    "winston": "^3.10.0",
-    "express-async-errors": "^3.1.1"
+    "@prisma/client": "^5.0.0"
   },
   "devDependencies": {
-    "@types/express": "^4.17.17",
-    "@types/node": "^20.4.5",
-    "@types/bcryptjs": "^2.4.2",
-    "@types/jsonwebtoken": "^9.0.2",
-    "@types/cors": "^2.8.13",
-    "@types/compression": "^1.7.2",
-    "typescript": "^5.1.6",
-    "ts-node": "^10.9.1",
-    "nodemon": "^3.0.1",
-    "jest": "^29.6.1",
-    "@types/jest": "^29.5.3"
+    "prisma": "^5.0.0"
   }
 }
